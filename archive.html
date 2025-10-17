@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Archives | Department of Computer Science</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary-blue': '#1e40af',
+            'dark-blue': '#1e3a8a',
+            'gold': '#fbbf24',
+            'dark-gold': '#f59e0b',
+            'green': '#149e3b'}
+        }
+      }
+    }
+  </script>
+  <!-- Keep existing JS connections -->
+  <script src="js/api.js" defer></script>
+  <script src="js/archive.js" defer></script>
+</head>
+
+<body class="bg-white text-gray-800 min-h-screen font-inter flex flex-col">
+  <!-- Header -->
+  <header class="bg-green text-white p-4 shadow-lg">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold text-gold hover:text-white transition-colors">CSC | FUTO</a>
+      <nav class="hidden md:flex space-x-6">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="announcements.html" class="nav-link">Announcements</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="archive.html" class="nav-link text-gold font-semibold">Archives</a>
+        <a href="search.html" class="nav-link">Search</a>
+        <a href="staff.html" class="nav-link">Staff</a>
+      </nav>
+      <!-- Mobile menu toggle -->
+      <button class="md:hidden btn-spin text-gold" onclick="toggleMobileMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden mt-4 space-y-2">
+      <a href="index.html" class="block nav-link py-2">Home</a>
+      <a href="announcements.html" class="block nav-link py-2">Announcements</a>
+      <a href="events.html" class="block nav-link py-2">Events</a>
+      <a href="archive.html" class="block nav-link text-gold font-semibold py-2">Archives</a>
+      <a href="search.html" class="block nav-link py-2">Search</a>
+      <a href="staff.html" class="block nav-link py-2">Staff</a>
+    </div>
+  </header>
+
+  <!-- Back Button -->
+  <div class="container mx-auto px-6 pt-6">
+    <a href="index.html" class="back-btn btn-spin inline-flex items-center">
+      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+      Back to Home
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container mx-auto p-6 flex-1">
+    <div class="text-center mb-8">
+      <h1 class="section-heading text-green">Department Archives</h1>
+      <p class="text-gray-700 text-lg">Explore historical announcements, events, and important departmental records</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="max-w-4xl mx-auto mb-8">
+      <div class="bg-gray-50 rounded-lg p-6 shadow">
+        <h3 class="text-lg font-semibold text-green mb-4">Filter Archives</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Content Type</label>
+            <select class="form-select w-full" id="contentTypeFilter">
+              <option value="all">All Content</option>
+              <option value="announcements">Announcements</option>
+              <option value="events">Events</option>
+              <option value="news">News</option>
+              <option value="documents">Documents</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Year</label>
+            <select class="form-select w-full" id="yearFilter">
+              <option value="all">All Years</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="older">Older</option>
+            </select>
+          </div>
+          <div class="flex items-end">
+            <button class="btn btn-spin w-full" onclick="applyFilters()">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18M3 10h18M3 16h18"></path>
+              </svg>
+              Apply Filters
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Archive List -->
+    <section class="max-w-6xl mx-auto">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-green flex items-center">
+          <svg class="w-6 h-6 mr-2 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14"></path>
+          </svg>
+          Archived Items
+        </h2>
+        <div class="flex items-center space-x-4">
+          <div class="loading hidden" id="loadingSpinner"></div>
+          <div class="text-sm text-gray-500" id="itemCount"></div>
+        </div>
+      </div>
+      <div id="archiveList" class="space-y-4">
+        <div id="loadingPlaceholder" class="text-center py-12">
+          <div class="loading mx-auto mb-4"></div>
+          <p class="text-gray-500">Loading archived content...</p>
+        </div>
+      </div>
+      <div id="emptyState" class="hidden text-center py-16">
+        <h3 class="text-xl font-semibold text-gray-500 mb-3">No archived content found</h3>
+        <p class="text-gray-400 text-lg">Try adjusting your filters or check back later.</p>
+      </div>
+      <!-- Pagination -->
+      <div id="pagination" class="hidden mt-8 flex justify-center">
+        <nav class="flex items-center space-x-1">
+          <button class="px-3 py-2 text-sm text-gray-500 bg-white border border-gray-300 rounded-l hover:bg-gray-50 disabled:opacity-50 btn-spin" id="prevPage" disabled>Previous</button>
+          <div id="pageNumbers" class="flex"></div>
+          <button class="px-3 py-2 text-sm text-gray-500 bg-white border border-gray-300 rounded-r hover:bg-gray-50 disabled:opacity-50 btn-spin" id="nextPage">Next</button>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="mt-12 max-w-6xl mx-auto">
+      <div class="bg-gradient-to-r from-green to-green text-white rounded-lg p-8 shadow">
+        <h3 class="text-xl font-bold text-gold mb-6 text-center">Archive Statistics</h3>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+          <div><div class="text-3xl font-bold text-gold mb-2" id="totalAnnouncements">-</div><p>Total Announcements</p></div>
+          <div><div class="text-3xl font-bold text-gold mb-2" id="totalEvents">-</div><p>Total Events</p></div>
+          <div><div class="text-3xl font-bold text-gold mb-2" id="totalDocuments">-</div><p>Documents</p></div>
+          <div><div class="text-3xl font-bold text-gold mb-2" id="archiveAge">-</div><p>Years of Archives</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="mt-8 max-w-4xl mx-auto">
+      <div class="bg-gray-50 rounded-lg p-6 shadow">
+        <h3 class="text-lg font-semibold text-green mb-4">About Our Archives</h3>
+        <p class="text-sm text-gray-600">Our archive stores historical announcements, events, and departmental documents. Old content is preserved here for reference, while newer updates remain on the main pages. Use the filters or search to find what you need.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-blue text-white py-8 mt-auto">
+    <div class="container mx-auto px-6 text-center">
+      <h4 class="text-xl font-bold text-gold mb-2">Department of Computer Science</h4>
+      <p class="text-sm opacity-90">Federal University of Technology Owerri</p>
+      <div class="border-t border-green-700 pt-4 mt-4">
+        <p class="text-sm">&copy; 2025 Computer Science Dept., FUTO. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Department of Computer Science | FUTO</title>
+  <link href="styles.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary-blue': '#1e40af',
+            'dark-blue': '#1e3a8a', 
+            'gold': '#fbbf24',
+            'dark-gold': '#f59e0b',
+            'green': '#149e3b'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-gray-800 font-inter min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="bg-green text-white p-4 shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold text-gold">CSC | FUTO</h1>
+      <div class="hidden md:flex space-x-6">
+        <a href="index.html" class="nav-link text-gold font-semibold">Home</a>
+        <a href="announcements.html" class="nav-link">Announcements</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="archive.html" class="nav-link">Archives</a>
+        <a href="search.html" class="nav-link">Search</a>
+        <a href="staff.html" class="nav-link">Staff</a>
+        <a href="login.html" class="nav-link">Login</a>
+      </div>
+      <!-- Mobile menu button -->
+      <button class="md:hidden btn-spin" onclick="toggleMobileMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden mt-4 space-y-2">
+      <a href="index.html" class="block nav-link text-gold font-semibold py-2">Home</a>
+      <a href="announcements.html" class="block nav-link py-2">Announcements</a>
+      <a href="events.html" class="block nav-link py-2">Events</a>
+      <a href="archive.html" class="block nav-link py-2">Archives</a>
+      <a href="search.html" class="block nav-link py-2">Search</a>
+      <a href="staff.html" class="block nav-link py-2">Staff</a>
+      <a href="login.html" class="block nav-link py-2">Login</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section relative h-[500px] md:h-[600px] flex items-center justify-center bg-gray-100">
+    <img src="images/cscbuilding.jpg" alt="Department Banner" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-dark-blue bg-opacity-60"></div>
+    <div class="relative text-center text-white px-4 max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 text-gold">Department of Computer Science</h2>
+      <p class="text-lg md:text-xl lg:text-2xl mb-8">School of ICT | Federal University of Technology Owerri</p>
+      <button class="btn btn-primary btn-spin" onclick="scrollToAbout()">Learn More About Us</button>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section-padding max-w-6xl mx-auto px-6 text-center">
+    <h3 class="section-heading">About Us</h3>
+    <div class="content-wrapper">
+      <p class="text-gray-700 text-lg leading-relaxed max-w-4xl mx-auto">
+        The Department of Computer Science, School of Information and Communication Technology, 
+        Federal University of Technology Owerri, is committed to producing world-class computer scientists 
+        equipped with knowledge, innovation, and practical problem-solving skills.
+      </p>
+    </div>
+  </section>
+
+  <!-- Vision & Mission -->
+  <section class="bg-gray-50 section-padding">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="section-heading text-center mb-12">Our Vision & Mission</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="card">
+          <h4 class="text-xl font-bold text-green mb-4">Vision</h4>
+          <p class="text-gray-700">
+            To be a leading hub for software innovation, research, and education in Africa, 
+            preparing graduates to shape the digital future.
+          </p>
+        </div>
+        <div class="card">
+          <h4 class="text-xl font-bold text-green mb-4">Mission</h4>
+          <p class="text-gray-700">
+            To train highly skilled computer scientists with a balance of theory, practice, 
+            and ethical responsibility to solve global challenges.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founded Year -->
+  <section class="section-padding max-w-6xl mx-auto px-6 text-center">
+    <h3 class="section-heading">Our History</h3>
+    <div class="content-wrapper">
+      <p class="text-lg text-gray-700">
+        Established for over <span class="text-gold font-bold text-xl">10 years</span>, the department has been 
+        at the forefront of advancing computing education and innovation in Nigeria.
+      </p>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="bg-gray-50 section-padding">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="section-heading text-center mb-12">Gallery</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="gallery-item">
+          <img src="images/gallery1.jpg" alt="Campus" class="w-full h-64 object-cover rounded-lg shadow-md">
+        </div>
+        <div class="gallery-item">
+          <img src="images/gallery2.jpg" alt="Department Building" class="w-full h-64 object-cover rounded-lg shadow-md">
+        </div>
+        <div class="gallery-item">
+          <img src="images/gallery3.jpg" alt="Students" class="w-full h-64 object-cover rounded-lg shadow-md">
+        </div>
+        <div class="gallery-item">
+          <img src="images/gallery4.jpg" alt="Students" class="w-full h-64 object-cover rounded-lg shadow-md">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Map -->
+  <section class="section-padding max-w-6xl mx-auto px-6">
+    <h3 class="section-heading text-center mb-8">Our Location</h3>
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15888.934867796252!2d6.970881974290025!3d5.381297422513621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10425d8dfe553499%3A0xec9c3a521f187a5b!2sSchool%20of%20Computing%20and%20Information%20Technology!5e0!3m2!1sen!2sng!4v1757192513210!5m2!1sen!2sng"
+        width="100%" 
+        height="400" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark-blue text-white py-8 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <div class="mb-4">
+        <h4 class="text-xl font-bold text-gold mb-2">Department of Computer Science</h4>
+        <p class="text-sm opacity-90">Federal University of Technology Owerri</p>
+      </div>
+      <div class="border-t border-green-700 pt-4">
+        <p class="text-sm">&copy; 2025 Computer Science Dept., FUTO. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    function scrollToAbout() {
+      document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
